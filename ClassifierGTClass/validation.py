@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pickle
 import os
 import sys
+import shutil
 import numpy as np
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
@@ -13,6 +13,10 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 from scikitplot.metrics import plot_confusion_matrix
 
+
+####################################################
+##  Creates a latex table and rounds the metrics to a given number
+####################################################
 def toLatexTab(accList, precList, recList, f1List, r):
     resultString = ''
     objectList = ['Bowl', 'BreakfastCereal', 'Buttermilk', 'Coffee', 'Cup', 'DinnerPlate', 'DrinkingBottle', 'DrinkingMug', 'Fork', 'Juice', 'Knife', 'Milk', 'PancakeMaker', 'PancakeMix', 'Rice', 'Spatula', 'Spoon', 'TableSalt', 'Tea-Iced', 'TomatoSauce']
@@ -25,20 +29,14 @@ def toLatexTab(accList, precList, recList, f1List, r):
         resultString += ' \\\  \n'
     return resultString
 
-
-if (len(sys.argv) < 2) | (len(sys.argv) > 2):
-    print 'Falsche Paramteranzahl!'
-else:
-    
-    classifier = sys.argv[1]
+def computeResults(classifier):
     
     dbFileName = classifier + 'UnrealClassifier.txt'
 
     predictionList = []
-    predIdx = 0
     groundTruthList = []
-    gtIdx = 0
 
+    ## get the classification and groudtruth from the corresponding database file
     delimiter = '---'
     fs = open(dbFileName, 'r')
     dbs = fs.read().split(delimiter)
@@ -56,7 +54,11 @@ else:
     #############################################################
     ## create results Directory
     dirName = classifier + 'results'
-    os.mkdir(dirName)
+    try:
+        os.mkdir(dirName)
+    except OSError:
+        shutil.rmtree(dirName)
+        os.mkdir(dirName)
 
     for x, entry in enumerate(groundTruthList):
       groundTruthList[x] = entry.split(',')[1].split(')')[0]
@@ -95,32 +97,36 @@ else:
     fs.write('f1(micro): ' + str(round(f1_score(groundTruthList, predictionList, average='micro'), 4)) + '\n')
     fs.write('f1(None): ' + str(f1_score(groundTruthList, predictionList, average=None)) + '\n')
 
-    # #print confusion_matrix(groundTruthList, predictionList)
+    
+    ##################################################
+    ## computes the accuracy for each class
+    ################################################## 
     cm = confusion_matrix(groundTruthList, predictionList)
-
     allCases = len(groundTruthList)
     allCorrect = np.trace(cm)
     print allCorrect
 
     accuracys = []
+    ## for each row/label of the confusionMatrix compute truepositives, truenegatives, falsepositives and falsenegatives. 
     for i in range(0, len(cm)):
-        li = cm[i]
-        tp = li[i]
+        line = cm[i]
+        tp = line[i]
         tn = allCorrect - tp
         rowAll = 0
         for k in range(0, len(li)):
-            rowAll += li[k]
+            rowAll += line[k]
         
         fn = rowAll - tp
         fp = 0
         for k in range(0, len(cm)):
             fp += cm[k][i]
         fp -= tp
+        ## compute the accuracy
         result = round((tp + tn) / float(tp + tn + fn + fp), 4)
         accuracys.append(result)
 
-    #print accuracys
 
+    ## write results and latex table to file
     fs.write('class accuracys: ' + str(accuracys).strip('[]'))
     fs.write('\n')
     fs.write('\n')
@@ -132,3 +138,13 @@ else:
     plt.savefig(matrixFileName)
     #plt.show()
     fs.close()
+
+def main():
+    if (len(sys.argv) != 2):
+        print 'Wrong paramter count! Needs a parameter for the classifier name.'
+    else:
+        computeResults(sys.argv[1])
+
+if __name__=="__main__":
+    main()
+    

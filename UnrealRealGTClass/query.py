@@ -1,24 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
 import pickle
-import os
 import numpy as np
-import threading
 import pracmln
 from pracmln import MLN
 from pracmln import Database
 from pracmln import MLNQuery
-from pracmln import MLNLearn
-from sklearn.model_selection import KFold
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
-from scikitplot.metrics import plot_confusion_matrix
+
 
 ######################################
 ## testing of mln
@@ -42,11 +31,12 @@ dbgtList = []
 for db in testDB:
     result = MLNQuery(mln=mln, db=db, method='WCSPInference', multicore=True, queries='object', cw=True, verbose=True).run()
 
-    ## find best result
+    ## find gt for each cluster in db and best prediction
     thisDBObjList = gtList[pIdx]
     for entry in thisDBObjList:
       predObj = entry
       objVal = result.results[entry]
+      ## checks if there a object with higher confidence
       for k, v in result.results.iteritems():
         if k.find(entry.split(',')[0])  != -1:
           if v > objVal:

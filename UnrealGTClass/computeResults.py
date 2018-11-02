@@ -3,6 +3,7 @@
 
 import pickle
 import os
+import shutil
 import numpy as np
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
@@ -13,6 +14,9 @@ import matplotlib.pyplot as plt
 from scikitplot.metrics import plot_confusion_matrix
 
 
+####################################################
+##  Creates a latex table and rounds the metrics to a given number
+####################################################
 def toLatexTab(accList, precList, recList, f1List, r):
     resultString = ''
     objectList = ['Bowl', 'BreakfastCereal', 'Buttermilk', 'Coffee', 'Cup', 'DinnerPlate', 'DrinkingBottle', 'DrinkingMug', 'Fork', 'Juice', 'Knife', 'Milk', 'PancakeMaker', 'PancakeMix', 'Rice', 'Spatula', 'Spoon', 'TableSalt', 'Tea-Iced', 'TomatoSauce']
@@ -49,8 +53,11 @@ for i in range(0, 10):
 #############################################################
 ## create results Directory
 dirName = 'results'
+if os.path.isdir(dirName):
+    shutil.rmtree(dirName)
 os.mkdir(dirName)
 
+## failsafe copy
 print groundTruthList
 gtListFile = dirName + '/groundTruthListRaw.p'
 pickle.dump(groundTruthList, open(gtListFile, 'w'))
@@ -58,12 +65,14 @@ print predictionList
 predListFile = dirName + '/predictionListRaw.p'
 pickle.dump(predictionList, open(predListFile, 'w'))
 
+## removes clutter from classification labels
 for x, entry in enumerate(groundTruthList):
   groundTruthList[x] = entry.split(',')[1].split(')')[0]
 
 for x, entry in enumerate(predictionList):
   predictionList[x] = entry.split(',')[1].split(')')[0]
 
+## failsafe copy
 print groundTruthList
 gtListFile = dirName + '/groundTruthList.p'
 pickle.dump(groundTruthList, open(gtListFile, 'w'))
@@ -102,14 +111,16 @@ fs.write('f1(macro): ' + str(round(f1_score(groundTruthList, predictionList, ave
 fs.write('f1(micro): ' + str(round(f1_score(groundTruthList, predictionList, average='micro'), 4)) + '\n')
 fs.write('f1(None): ' + str(f1_score(groundTruthList, predictionList, average=None)) + '\n')
 
-# #print confusion_matrix(groundTruthList, predictionList)
+##################################################
+## computes the accuracy for each class
+################################################## 
 cm = confusion_matrix(groundTruthList, predictionList)
-
 allCases = len(groundTruthList)
 allCorrect = np.trace(cm)
 print allCorrect
 
 accuracys = []
+## for each row/label of the confusionMatrix compute truepositives, truenegatives, falsepositives and falsenegatives. 
 for i in range(0, len(cm)):
     li = cm[i]
     tp = li[i]
@@ -123,11 +134,11 @@ for i in range(0, len(cm)):
     for k in range(0, len(cm)):
         fp += cm[k][i]
     fp -= tp
+    ## compute the accuracy
     result = round((tp + tn) / float(tp + tn + fn + fp), 4)
     accuracys.append(result)
 
-#print accuracys
-
+## write results and latex table to file
 fs.write('class accuracys: ' + str(accuracys).strip('[]'))
 fs.write('\n')
 fs.write('\n')

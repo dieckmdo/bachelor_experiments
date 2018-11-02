@@ -1,23 +1,26 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+import os
 import numpy as np
 import sklearn.cluster
 import distance
 
 dbFile = 'UnrealGTClass.txt'
-
+outFile = 'UnrealGTClassClustered.txt'
 textWords = []
 productWords = []
 logoWords = []
 
 fs = open(dbFile, 'r')
-fo = open('UnrealGTClassClustered.txt', 'w')
 
+if os.path.isfile(outFile):
+    os.remove(outFile)
 
+fo = open(outFile, 'w')
+
+## get the strings from the predicates
 lines = fs.readlines()
-
 for line in lines:
     if line.find('goggles') != -1:
         gogType = line.split('(')
@@ -35,7 +38,7 @@ textWords = np.asarray(textWords)
 productWords = np.asarray(productWords)
 logoWords = np.asarray(logoWords)
 
-### clustering of text labels
+## clustering of text labels
 text_lev_similarity = -1*np.array([[distance.levenshtein(w1,w2) for w1 in textWords] for w2 in textWords])
 
 affprop = sklearn.cluster.AffinityPropagation(affinity="precomputed", damping=0.7)
@@ -58,7 +61,7 @@ for cluster_id in np.unique(affprop.labels_):
             lines[i] = newLine 
 
 
-# ### clustering of product labels
+## clustering of product labels
 product_lev_similarity = -1*np.array([[distance.levenshtein(w1,w2) for w1 in productWords] for w2 in productWords])
 
 affprop = sklearn.cluster.AffinityPropagation(affinity="precomputed", damping=0.7)
@@ -81,7 +84,7 @@ for cluster_id in np.unique(affprop.labels_):
             lines[i] = newLine 
 
 
-# ### clustering of logo labels
+## clustering of logo labels
 logo_lev_similarity = -1*np.array([[distance.levenshtein(w1,w2) for w1 in logoWords] for w2 in logoWords])
 
 affprop = sklearn.cluster.AffinityPropagation(affinity="precomputed", damping=0.7)
@@ -105,3 +108,4 @@ for cluster_id in np.unique(affprop.labels_):
 
 fo.writelines(lines)
 fs.close()
+fo.close()

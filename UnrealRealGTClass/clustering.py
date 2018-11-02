@@ -1,28 +1,36 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+import os
 import numpy as np
 import sklearn.cluster
 import distance
 
 dbFileU = 'UnrealGTClass.txt'
 dbFileR = 'RealGTClass.txt'
+outUnreal = 'UnrealGTClassClustered.txt'
+outReal = 'RealGTClassClustered.txt'
 
 textWords = []
 productWords = []
 logoWords = []
 
 fsU = open(dbFileU, 'r')
-foU = open('UnrealGTClassClustered.txt', 'w')
-
 fsR = open(dbFileR, 'r')
-foR = open('RealGTClassClustered.txt', 'w')
+
+if os.path.isfile(outUnreal):
+    os.remove(outUnreal)
+foU = open(outUnreal, 'w')
+
+if os.path.isfile(outReal):
+    os.remove(outReal)
+foR = open(outReal, 'w')
 
 
 linesU = fsU.readlines()
 linesR = fsR.readlines()
 
+## get the strings from the predicates
 for line in linesU:
     if line.find('goggles') != -1:
         gogType = line.split('(')

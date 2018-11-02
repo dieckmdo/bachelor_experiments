@@ -1,28 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pickle
 import os
-import numpy as np
 import threading
 import pracmln
 from pracmln import MLN
 from pracmln import Database
-from pracmln import MLNQuery
 from pracmln import MLNLearn
-from sklearn.model_selection import KFold
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
-from scikitplot.metrics import plot_confusion_matrix
 
 def runMLN(k):
     print 'run' + str(k)
     ###########################################################
-    ## MLN learning and querieing
+    ## MLN instanciating
     ###########################################################
     mln = MLN(grammar = 'PRACGrammar', logic = 'FirstOrderLogic')
     ##predicates
@@ -70,7 +59,7 @@ def main():
        runMLN(i)
     # multithread here
     #threads = []
-    #for i in range(2, 10):
+    #for i in range(0, 10):
      #   t = threading.Thread(target=runMLN, args=(i,))
      #   threads.append(t)
      #   t.start()

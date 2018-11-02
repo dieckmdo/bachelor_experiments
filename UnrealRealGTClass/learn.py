@@ -1,19 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pickle
 import os
-import numpy as np
-import threading
 import pracmln
 from pracmln import MLN
 from pracmln import Database
-from pracmln import MLNQuery
 from pracmln import MLNLearn
 
 def runMLN():
     ###########################################################
-    ## MLN learning and querieing
+    ## MLN instanciating
     ###########################################################
     mln = MLN(grammar = 'PRACGrammar', logic = 'FirstOrderLogic')
     ##predicates
@@ -40,7 +36,6 @@ def runMLN():
     mln << '0 object(?c1, +?t1) ^ object(?c2, +?t2) ^ ?c1 =/= ?c2'
 
     dirName = 'mlnData'
-    os.mkdir(dirName)
     trainFileName = 'UnrealGTClassClustered.txt'
     ###################################
     ## learning of mln

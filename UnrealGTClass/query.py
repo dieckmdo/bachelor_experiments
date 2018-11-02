@@ -48,11 +48,12 @@ else:
     for db in testDB:
         result = MLNQuery(mln=mln, db=db, method='WCSPInference', multicore=True, queries='object', cw=True, verbose=True).run()
 
-        ## find best result
+        ## find gt for each cluster in db and best prediction
         thisDBObjList = gtList[pIdx]
         for entry in thisDBObjList:
           predObj = entry
           objVal = result.results[entry]
+          ## checks if there a object with higher confidence
           for k, v in result.results.iteritems():
             if k.find(entry.split(',')[0])  != -1:
               if v > objVal:
