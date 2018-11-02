@@ -1,0 +1,120 @@
+accuracy: 0.9608329201784829
+precision(macro): 0.958
+precision(micro): 0.9608
+precision(None): [1.         1.         0.89795918 0.9375     0.925      0.97435897
+ 0.97674419 1.         0.88636364 1.         1.         0.925
+ 0.95238095 0.94594595 0.95       0.97222222 0.84848485 1.
+ 0.975      0.97560976 1.         0.97727273 1.         0.96923077
+ 1.         1.         1.         0.97619048 0.775      0.77142857
+ 0.97297297 1.         0.8030303  1.         1.         1.
+ 0.97674419 0.95       1.         0.96969697 1.         0.93333333
+ 0.97777778]
+recall(macro): 0.9561
+recall(micro): 0.9608
+recall(None): [0.98461538 1.         0.93617021 0.95744681 0.925      0.95
+ 0.97674419 1.         0.975      1.         1.         0.94871795
+ 1.         0.8974359  0.97435897 1.         0.84848485 0.9
+ 0.975      0.97560976 0.95555556 0.97727273 0.94871795 1.
+ 0.98571429 1.         1.         0.91111111 0.775      0.72972973
+ 0.94736842 1.         0.96363636 0.97777778 0.95652174 0.95384615
+ 0.93333333 0.97435897 1.         0.98461538 1.         0.93333333
+ 0.97777778]
+f1(macro): 0.9566
+f1(micro): 0.9608
+f1(None): [0.99224806 1.         0.91666667 0.94736842 0.925      0.96202532
+ 0.97674419 1.         0.92857143 1.         1.         0.93670886
+ 0.97560976 0.92105263 0.96202532 0.98591549 0.84848485 0.94736842
+ 0.975      0.97560976 0.97727273 0.97727273 0.97368421 0.984375
+ 0.99280576 1.         1.         0.94252874 0.775      0.75
+ 0.96       1.         0.87603306 0.98876404 0.97777778 0.97637795
+ 0.95454545 0.96202532 1.         0.97709924 1.         0.93333333
+ 0.97777778]
+class accuracys: 0.9995, 1.0, 0.9959, 0.9974, 0.9969, 0.9985, 0.999, 1.0, 0.9969, 1.0, 1.0, 0.9974, 0.999, 0.9969, 0.9985, 0.9995, 0.9949, 0.9979, 0.999, 0.999, 0.999, 0.999, 0.999, 0.999, 0.9995, 1.0, 1.0, 0.9974, 0.9908, 0.9908, 0.9985, 1.0, 0.9923, 0.9995, 0.999, 0.9985, 0.9979, 0.9985, 1.0, 0.9985, 1.0, 0.9969, 0.999
+
+AlbiHimbeerJuice & 0.9995 & 1.0 & 0.9846 & 0.9922 \\  
+BlueCeramicIkeaMug & 1.0 & 1.0 & 1.0 & 1.0 \\  
+BlueMetalPlateWhiteSpeckles & 0.9959 & 0.898 & 0.9362 & 0.9167 \\  
+BluePlasticBowl & 0.9974 & 0.9375 & 0.9574 & 0.9474 \\  
+BluePlasticFork & 0.9969 & 0.925 & 0.925 & 0.925 \\  
+BluePlasticKnife & 0.9985 & 0.9744 & 0.95 & 0.962 \\  
+BluePlasticSpoon & 0.999 & 0.9767 & 0.9767 & 0.9767 \\  
+CupEcoOrange & 1.0 & 1.0 & 1.0 & 1.0 \\  
+EdekaRedBowl & 0.9969 & 0.8864 & 0.975 & 0.9286 \\  
+ElBrygCoffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
+JaMilch & 1.0 & 1.0 & 1.0 & 1.0 \\  
+JodSalz & 0.9974 & 0.925 & 0.9487 & 0.9367 \\  
+KelloggsCornFlakes & 0.999 & 0.9524 & 1.0 & 0.9756 \\  
+KelloggsToppasMini & 0.9969 & 0.9459 & 0.8974 & 0.9211 \\  
+KnusperSchokoKeks & 0.9985 & 0.95 & 0.9744 & 0.962 \\  
+KoellnMuesliKnusperHonigNuss & 0.9995 & 0.9722 & 1.0 & 0.9859 \\  
+LargeGreySpoon & 0.9949 & 0.8485 & 0.8485 & 0.8485 \\  
+LinuxCup & 0.9979 & 1.0 & 0.9 & 0.9474 \\  
+LionCerealBox & 0.999 & 0.975 & 0.975 & 0.975 \\  
+MarkenSalz & 0.999 & 0.9756 & 0.9756 & 0.9756 \\  
+MeerSalz & 0.999 & 1.0 & 0.9556 & 0.9773 \\  
+MondaminPancakeMix & 0.999 & 0.9773 & 0.9773 & 0.9773 \\  
+NesquikCereal & 0.999 & 1.0 & 0.9487 & 0.9737 \\  
+PfannerGruneIcetea & 0.999 & 0.9692 & 1.0 & 0.9844 \\  
+PfannerPfirsichIcetea & 0.9995 & 1.0 & 0.9857 & 0.9928 \\  
+RedMetalBowlWhiteSpeckles & 1.0 & 1.0 & 1.0 & 1.0 \\  
+RedMetalCupWhiteSpeckles & 1.0 & 1.0 & 1.0 & 1.0 \\  
+RedMetalPlateWhiteSpeckles & 0.9974 & 0.9762 & 0.9111 & 0.9425 \\  
+RedPlasticFork & 0.9908 & 0.775 & 0.775 & 0.775 \\  
+RedPlasticKnife & 0.9908 & 0.7714 & 0.7297 & 0.75 \\  
+RedPlasticSpoon & 0.9985 & 0.973 & 0.9474 & 0.96 \\  
+ReineButterMilch & 1.0 & 1.0 & 1.0 & 1.0 \\  
+SeverinPancakeMaker & 0.9923 & 0.803 & 0.9636 & 0.876 \\  
+SiggBottle & 0.9995 & 1.0 & 0.9778 & 0.9888 \\  
+SlottedSpatula & 0.999 & 1.0 & 0.9565 & 0.9778 \\  
+SojaMilch & 0.9985 & 1.0 & 0.9538 & 0.9764 \\  
+SpitzenReis & 0.9979 & 0.9767 & 0.9333 & 0.9545 \\  
+TomatoAlGustoBasilikum & 0.9985 & 0.95 & 0.9744 & 0.962 \\  
+TomatoSauceOroDiParma & 1.0 & 1.0 & 1.0 & 1.0 \\  
+VollMilch & 0.9985 & 0.9697 & 0.9846 & 0.9771 \\  
+WeideMilchSmall & 1.0 & 1.0 & 1.0 & 1.0 \\  
+WhiteCeramicIkeaBowl & 0.9969 & 0.9333 & 0.9333 & 0.9333 \\  
+YellowCeramicPlate & 0.999 & 0.9778 & 0.9778 & 0.9778 \\  
+
+AlbiHimbeerJuice & 1.0 & 1.0 & 0.98 & 0.99 \\  
+BlueCeramicIkeaMug & 1.0 & 1.0 & 1.0 & 1.0 \\  
+BlueMetalPlateWhiteSpeckles & 1.0 & 0.9 & 0.94 & 0.92 \\  
+BluePlasticBowl & 1.0 & 0.94 & 0.96 & 0.95 \\  
+BluePlasticFork & 1.0 & 0.93 & 0.93 & 0.93 \\  
+BluePlasticKnife & 1.0 & 0.97 & 0.95 & 0.96 \\  
+BluePlasticSpoon & 1.0 & 0.98 & 0.98 & 0.98 \\  
+CupEcoOrange & 1.0 & 1.0 & 1.0 & 1.0 \\  
+EdekaRedBowl & 1.0 & 0.89 & 0.97 & 0.93 \\  
+ElBrygCoffee & 1.0 & 1.0 & 1.0 & 1.0 \\  
+JaMilch & 1.0 & 1.0 & 1.0 & 1.0 \\  
+JodSalz & 1.0 & 0.93 & 0.95 & 0.94 \\  
+KelloggsCornFlakes & 1.0 & 0.95 & 1.0 & 0.98 \\  
+KelloggsToppasMini & 1.0 & 0.95 & 0.9 & 0.92 \\  
+KnusperSchokoKeks & 1.0 & 0.95 & 0.97 & 0.96 \\  
+KoellnMuesliKnusperHonigNuss & 1.0 & 0.97 & 1.0 & 0.99 \\  
+LargeGreySpoon & 0.99 & 0.85 & 0.85 & 0.85 \\  
+LinuxCup & 1.0 & 1.0 & 0.9 & 0.95 \\  
+LionCerealBox & 1.0 & 0.97 & 0.97 & 0.97 \\  
+MarkenSalz & 1.0 & 0.98 & 0.98 & 0.98 \\  
+MeerSalz & 1.0 & 1.0 & 0.96 & 0.98 \\  
+MondaminPancakeMix & 1.0 & 0.98 & 0.98 & 0.98 \\  
+NesquikCereal & 1.0 & 1.0 & 0.95 & 0.97 \\  
+PfannerGruneIcetea & 1.0 & 0.97 & 1.0 & 0.98 \\  
+PfannerPfirsichIcetea & 1.0 & 1.0 & 0.99 & 0.99 \\  
+RedMetalBowlWhiteSpeckles & 1.0 & 1.0 & 1.0 & 1.0 \\  
+RedMetalCupWhiteSpeckles & 1.0 & 1.0 & 1.0 & 1.0 \\  
+RedMetalPlateWhiteSpeckles & 1.0 & 0.98 & 0.91 & 0.94 \\  
+RedPlasticFork & 0.99 & 0.78 & 0.78 & 0.78 \\  
+RedPlasticKnife & 0.99 & 0.77 & 0.73 & 0.75 \\  
+RedPlasticSpoon & 1.0 & 0.97 & 0.95 & 0.96 \\  
+ReineButterMilch & 1.0 & 1.0 & 1.0 & 1.0 \\  
+SeverinPancakeMaker & 0.99 & 0.8 & 0.96 & 0.88 \\  
+SiggBottle & 1.0 & 1.0 & 0.98 & 0.99 \\  
+SlottedSpatula & 1.0 & 1.0 & 0.96 & 0.98 \\  
+SojaMilch & 1.0 & 1.0 & 0.95 & 0.98 \\  
+SpitzenReis & 1.0 & 0.98 & 0.93 & 0.95 \\  
+TomatoAlGustoBasilikum & 1.0 & 0.95 & 0.97 & 0.96 \\  
+TomatoSauceOroDiParma & 1.0 & 1.0 & 1.0 & 1.0 \\  
+VollMilch & 1.0 & 0.97 & 0.98 & 0.98 \\  
+WeideMilchSmall & 1.0 & 1.0 & 1.0 & 1.0 \\  
+WhiteCeramicIkeaBowl & 1.0 & 0.93 & 0.93 & 0.93 \\  
+YellowCeramicPlate & 1.0 & 0.98 & 0.98 & 0.98 \\  

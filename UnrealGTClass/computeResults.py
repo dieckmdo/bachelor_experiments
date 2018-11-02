@@ -17,11 +17,10 @@ from scikitplot.metrics import plot_confusion_matrix
 ####################################################
 ##  Creates a latex table and rounds the metrics to a given number
 ####################################################
-def toLatexTab(accList, precList, recList, f1List, r):
+def toLatexTab(objList, accList, precList, recList, f1List, r):
     resultString = ''
-    objectList = ['Bowl', 'BreakfastCereal', 'Buttermilk', 'Coffee', 'Cup', 'DinnerPlate', 'DrinkingBottle', 'DrinkingMug', 'Fork', 'Juice', 'Knife', 'Milk', 'PancakeMaker', 'PancakeMix', 'Rice', 'Spatula', 'Spoon', 'TableSalt', 'Tea-Iced', 'TomatoSauce']
-    for i in range(0, 20):
-        resultString += objectList[i] + ' & ' 
+    for i in range(0, len(objList)):
+        resultString += objList[i] + ' & ' 
         resultString += str(round(accList[i], r)) + ' & ' 
         resultString += str(round(precList[i], r)) + ' & '   
         resultString += str(round(recList[i], r)) + ' & ' 
@@ -29,7 +28,8 @@ def toLatexTab(accList, precList, recList, f1List, r):
         resultString += ' \\\  \n'
     return resultString
 
-
+    
+objectList = ['Bowl', 'BreakfastCereal', 'Buttermilk', 'Coffee', 'Cup', 'DinnerPlate', 'DrinkingBottle', 'DrinkingMug', 'Fork', 'Juice', 'Knife', 'Milk', 'PancakeMaker', 'PancakeMix', 'Rice', 'Spatula', 'Spoon', 'TableSalt', 'Tea-Iced', 'TomatoSauce']
 #############################################################
 ## get the gt and pred lists in one list
 #############################################################
@@ -58,10 +58,8 @@ if os.path.isdir(dirName):
 os.mkdir(dirName)
 
 ## failsafe copy
-print groundTruthList
 gtListFile = dirName + '/groundTruthListRaw.p'
 pickle.dump(groundTruthList, open(gtListFile, 'w'))
-print predictionList
 predListFile = dirName + '/predictionListRaw.p'
 pickle.dump(predictionList, open(predListFile, 'w'))
 
@@ -73,10 +71,8 @@ for x, entry in enumerate(predictionList):
   predictionList[x] = entry.split(',')[1].split(')')[0]
 
 ## failsafe copy
-print groundTruthList
 gtListFile = dirName + '/groundTruthList.p'
 pickle.dump(groundTruthList, open(gtListFile, 'w'))
-print predictionList
 predListFile = dirName + '/predictionList.p'
 pickle.dump(predictionList, open(predListFile, 'w'))
 
@@ -114,10 +110,9 @@ fs.write('f1(None): ' + str(f1_score(groundTruthList, predictionList, average=No
 ##################################################
 ## computes the accuracy for each class
 ################################################## 
-cm = confusion_matrix(groundTruthList, predictionList)
+cm = confusion_matrix(groundTruthList, predictionList, labels=objectList)
 allCases = len(groundTruthList)
 allCorrect = np.trace(cm)
-print allCorrect
 
 accuracys = []
 ## for each row/label of the confusionMatrix compute truepositives, truenegatives, falsepositives and falsenegatives. 
@@ -142,10 +137,10 @@ for i in range(0, len(cm)):
 fs.write('class accuracys: ' + str(accuracys).strip('[]'))
 fs.write('\n')
 fs.write('\n')
-fs.write(toLatexTab(accuracys, precision_score(groundTruthList, predictionList, average=None), recall_score(groundTruthList, predictionList, average=None), f1_score(groundTruthList, predictionList, average=None), 4 ))
+fs.write(toLatexTab(objectList, accuracys, precision_score(groundTruthList, predictionList, average=None), recall_score(groundTruthList, predictionList, average=None), f1_score(groundTruthList, predictionList, average=None), 4 ))
 fs.write('\n')
-fs.write(toLatexTab(accuracys, precision_score(groundTruthList, predictionList, average=None), recall_score(groundTruthList, predictionList, average=None), f1_score(groundTruthList, predictionList, average=None), 2 ))
-plot_confusion_matrix(groundTruthList, predictionList, x_tick_rotation=90, figsize=(14,13), title=' ', text_fontsize='large', cmap='Reds')
+fs.write(toLatexTab(objectList, accuracys, precision_score(groundTruthList, predictionList, average=None), recall_score(groundTruthList, predictionList, average=None), f1_score(groundTruthList, predictionList, average=None), 2 ))
+plot_confusion_matrix(groundTruthList, predictionList, labels=objectList, x_tick_rotation=90, figsize=(14,13), title=' ', text_fontsize='large', cmap='Reds')
 matrixFileName = dirName + '/confusionMatrix.png'
 plt.savefig(matrixFileName)
 #plt.show()
