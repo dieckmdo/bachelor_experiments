@@ -1,6 +1,6 @@
-# UnrealGTClass
+# UnrealRealGTClass
 
-The folder contains the results of the classification of the real images from and MLN, that was trained on Unreal-Images.
+The folder contains the results of the classification of the real images from a MLN, that was trained on Unreal-Images.
 
 ## Contents
 
