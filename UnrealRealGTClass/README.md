@@ -21,6 +21,7 @@ The folder contains the results of the classification of the real images from an
 2. setup.py
 3. learn.py
 4. query.py
+5. computeResults.py
 
 What the each script does and how it is called is described below. 
 

@@ -24,6 +24,7 @@ The folder contains the results of the 10-fold crossvalidation on Unreal-Imgages
 2. setup.py
 3. learn.py
 4. query.py
+5. computeResults.py
 
 What the each script does and how it is called is described below. 
 
