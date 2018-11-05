@@ -94,6 +94,7 @@ fs.write('accuracy: ' + str(accuracy_score(groundTruthList, predictionList)) + '
 # #print 'precision(None): ' + str(precision_score(groundTruthList, predictionList, average=None))
 fs.write('precision(macro): ' + str(round(precision_score(groundTruthList, predictionList, average='macro'), 4)) + '\n')
 fs.write('precision(micro): ' + str(round(precision_score(groundTruthList, predictionList, average='micro'), 4)) + '\n')
+fs.write('precision(weighted): ' + str(round(precision_score(groundTruthList, predictionList, average='weighted'), 4)) + '\n')
 fs.write('precision(None): ' + str(precision_score(groundTruthList, predictionList, average=None)) + '\n')
 
 # #print 'recall(macro): ' + str(recall_score(groundTruthList, predictionList, average='macro'))
@@ -101,6 +102,7 @@ fs.write('precision(None): ' + str(precision_score(groundTruthList, predictionLi
 # #print 'recall(None): ' + str(recall_score(groundTruthList, predictionList, average=None))
 fs.write('recall(macro): ' + str(round(recall_score(groundTruthList, predictionList, average='macro'), 4)) + '\n')
 fs.write('recall(micro): ' + str(round(recall_score(groundTruthList, predictionList, average='micro'), 4)) + '\n')
+fs.write('recall(weighted): ' + str(round(recall_score(groundTruthList, predictionList, average='weighted'), 4)) + '\n')
 fs.write('recall(None): ' + str(recall_score(groundTruthList, predictionList, average=None)) + '\n')
 
 # #print 'f1(macro): ' + str(f1_score(groundTruthList, predictionList, average='macro'))
@@ -108,6 +110,7 @@ fs.write('recall(None): ' + str(recall_score(groundTruthList, predictionList, av
 # #print 'f1(None): ' + str(f1_score(groundTruthList, predictionList, average=None))
 fs.write('f1(macro): ' + str(round(f1_score(groundTruthList, predictionList, average='macro'), 4)) + '\n')
 fs.write('f1(micro): ' + str(round(f1_score(groundTruthList, predictionList, average='micro'), 4)) + '\n')
+fs.write('f1(weighted): ' + str(round(f1_score(groundTruthList, predictionList, average='weighted'), 4)) + '\n')
 fs.write('f1(None): ' + str(f1_score(groundTruthList, predictionList, average=None)) + '\n')
 
 ##################################################

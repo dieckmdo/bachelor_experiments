@@ -30,7 +30,7 @@ def toLatexTab(objList, accList, precList, recList, f1List, r):
 
 def computeResults(classifier):
     
-    dbFileName = classifier + 'ClassifierClass.txt'
+    dbFileName = classifier + 'ClassifierInstance.txt'
 
     predictionList = []
     groundTruthList = []
@@ -68,7 +68,10 @@ def computeResults(classifier):
     ##########################################################
     ## metrics
     ##########################################################
-    objectList = ['Bowl', 'BreakfastCereal', 'Buttermilk', 'Coffee', 'Cup', 'DinnerPlate', 'DrinkingBottle', 'DrinkingMug', 'Fork', 'Juice', 'Knife', 'Milk', 'PancakeMaker', 'PancakeMix', 'Rice', 'Spatula', 'Spoon', 'TableSalt', 'Tea-Iced', 'TomatoSauce']
+    objectList = ['AlbiHimbeerJuice','BlueCeramicIkeaMug','BlueMetalPlateWhiteSpeckles','BluePlasticBowl','BluePlasticFork','BluePlasticKnife','BluePlasticSpoon','CupEcoOrange','EdekaRedBowl','ElBrygCoffee','JaMilch','JodSalz','KelloggsCornFlakes',
+    'KelloggsToppasMini','KnusperSchokoKeks','KoellnMuesliKnusperHonigNuss','LargeGreySpoon','LinuxCup','LionCerealBox','MarkenSalz','MeerSalz','MondaminPancakeMix','NesquikCereal','PfannerGruneIcetea','PfannerPfirsichIcetea','RedMetalBowlWhiteSpeckles',
+    'RedMetalCupWhiteSpeckles','RedMetalPlateWhiteSpeckles','RedPlasticFork','RedPlasticKnife','RedPlasticSpoon','ReineButterMilch','SeverinPancakeMaker','SiggBottle','SlottedSpatula','SojaMilch','SpitzenReis','TomatoAlGustoBasilikum',
+    'TomatoSauceOroDiParma','VollMilch','WeideMilchSmall','WhiteCeramicIkeaBowl','YellowCeramicPlate']
     fileName = dirName + '/metrics.txt'
 
     fs = open(fileName, 'w')
@@ -135,7 +138,7 @@ def computeResults(classifier):
     fs.write(toLatexTab(objectList, accuracys, precision_score(groundTruthList, predictionList, average=None), recall_score(groundTruthList, predictionList, average=None), f1_score(groundTruthList, predictionList, average=None), 4 ))
     fs.write('\n')
     fs.write(toLatexTab(objectList, accuracys, precision_score(groundTruthList, predictionList, average=None), recall_score(groundTruthList, predictionList, average=None), f1_score(groundTruthList, predictionList, average=None), 2 ))
-    plot_confusion_matrix(groundTruthList, predictionList, labels=objectList, x_tick_rotation=90, figsize=(14,13), title=' ', text_fontsize='large', cmap='Reds')
+    plot_confusion_matrix(groundTruthList, predictionList, labels=objectList, x_tick_rotation=90, figsize=(24,21), title=' ', text_fontsize='large', cmap='Reds')
     matrixFileName = dirName + '/confusionMatrix.png'
     plt.savefig(matrixFileName)
     #plt.show()

@@ -1,6 +1,6 @@
-# ClassifierGTClass
+# ClassifierGTInstance
 
-This folder contains the results from the class classification of the `RFAnnotator` and `SVMAnnotator` from the robosherlock package rs_addons.
+This folder contains the results from the instance classification of the `RFAnnotator` and `SVMAnnotator` from the robosherlock package rs_addons.
 For the trained models see ...
 
 The Annotators added their classification as *instance* predicate. The groundtruth was annotated using the `UnrealGTAnnotator` and is represented by the *object* predicate.
@@ -9,8 +9,8 @@ The Annotators added their classification as *instance* predicate. The groundtru
 
 - RFresults: contains the confusion matrix and metrics for the classification of the `RFAnnotator`
 - SVMresults: contains the confusion matrix and metrics for the classification of the `SVMAnnotator`
-- RFClassifierClass.txt: the merged database file of the `RFAnnotator`
-- SVMClassifierClass.txt: the merged database file of the `SVMAnnotator`
+- RFClassifierInstance.txt: the merged database file of the `RFAnnotator`
+- SVMClassifierInstance.txt: the merged database file of the `SVMAnnotator`
 - validation.py: a script to compute the confusion matrix and metrics for the classifications
 
 - the database files for the scenes splitted in scenarios, because the scenes get run through robosherlock per scenario
