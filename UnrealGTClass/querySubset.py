@@ -5,31 +5,22 @@ import sys
 import pickle
 import os
 import numpy as np
-import threading
 import pracmln
 from pracmln import MLN
 from pracmln import Database
 from pracmln import MLNQuery
-from pracmln import MLNLearn
-from sklearn.model_selection import KFold
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
-from scikitplot.metrics import plot_confusion_matrix
+
 
 
 if (len(sys.argv) < 3) | (len(sys.argv) > 3):
     print 'Falsche Paramteranzahl!'
 else:
     i = sys.argv[1]
-    print 'Starting query for directory: ' + str(i)
+    dirName = 'run' + str(i) + '/' + sys.argv[2]
+    print 'Starting query for directory: ' + dirName
     ######################################
     ## testing of mln
     ######################################
-    dirName = 'run' + str(i)
     mlnFileName = dirName + '/learnedMLN.mln'
 
     mln = MLN(grammar = 'PRACGrammar', logic = 'FirstOrderLogic')
@@ -38,11 +29,11 @@ else:
             mln << line
 
 
-    testFileName = dirName + '/' + sys.argv[2] +'testDB.txt'
+    testFileName = dirName + '/testDB.txt'
     testDB = Database.load(mln, testFileName)
 
     pIdx = 0
-    gtList = np.load(dirName + '/' + sys.argv[2] + 'GTraw.npy')
+    gtList = np.load(dirName + '/GTraw.npy')
     dbpredList = []
     dbgtList = []
     for db in testDB:
@@ -66,9 +57,9 @@ else:
           dbgtList.append(entry)
         pIdx += 1
         ## -----------------
-    predFileName = dirName + '/' + sys.argv[2] +'resultPred.p'
+    predFileName = dirName + '/resultPred.p'
     pickle.dump(dbpredList, open(predFileName, 'w'))
-    gtFileName = dirName + '/' + sys.argv[2] +'resultGT.p'
+    gtFileName = dirName + '/resultGT.p'
     pickle.dump(dbgtList, open(gtFileName, 'w'))
 
     del dbpredList

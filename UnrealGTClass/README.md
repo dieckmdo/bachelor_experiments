@@ -1,6 +1,7 @@
 # UnrealGTClass
 
 The folder contains the results of the 10-fold crossvalidation on Unreal-Imgages with objectclasses as groundtruth.
+Also contains the results for the crossvalidations with only one predicate.
 
 ## Contents
 
@@ -14,9 +15,10 @@ The folder contains the results of the 10-fold crossvalidation on Unreal-Imgages
 - learn.py: trains the mlns
 - query.py: queries the mlns
 - computeResults.py: computes the results
-- createSubTestSets.py
-- queryReduced.py
-- computeResultsReduced.py
+- createSubset.py: creates the train/test databases for a single predicate
+- learnSubset.py: trains the mlns with a single predicate
+- querySubset.py: queries the single predicate databases
+- computeResultsSubset.py: computes the results for the a single predicate
 
 ## Workflow
 
@@ -25,6 +27,12 @@ The folder contains the results of the 10-fold crossvalidation on Unreal-Imgages
 3. learn.py
 4. query.py
 5. computeResults.py
+
+If you want to learn with only a single predicate:
+6. createSubset.py
+7. learnSubset.py
+8. querySubset.py
+9. computeesultsSubset.py
 
 What the each script does and how it is called is described below. 
 
@@ -64,10 +72,39 @@ usage: `python query.py [0-9]`
 
 Takes the number of the folder which should be queried as parameter. Outputs a resultPred.p for the predicted class and resultGT.p for the groundtruth.
 
-### computeResults
+### computeResults.py
 
 Creates the confusion matrix and other metrics for the classification. 
 
 usage: `python computeResults.py`
 
 Creates a folder called results, where the confusion matrix, metrices and some backup files of the groundtruth and prediction lists get stored. 
+
+### createSubset.py
+
+Creates the train and test sets for the 10-fold crossvalidation with only one predicate and the *scene* prediacte, based on the testSetDistribution.npy for each folder [0-9]. Databases will only include either [color, size, shape, instance, goggles] annotations. The train and test DB get saved in run[0-9]/predicateName. Also saves the groundtruth for the test sets in a seperate file.
+
+usage: `python createSubset.py [color, size, shape, instance, goggles]`
+
+Takes the predicate name, for which the train/test dbs should be created, as parameter. UnrealGTClassClustered.txt is the input Database file. Outputs [color, size, shape, instance, goggles] folder in run[0-9], trainDB.txt, testDB.txt, GTraw.npy.
+
+### learnSubset.py
+Trains mlns with only the specified predicate with the respective training set in run[0-9].
+
+usage: `python learnSubset.py [color, size, shape, instance, goggles]`
+
+Takes the predicate for which to train a mln as paramter. Outputs a learned.mln file in run[0-9]/[color, size, shape, instance, goggles].
+
+### querySubset.py
+Queries the trained MLN in each predicate folder with the testset and asks for the object. The best found solution for each cluster is then stored as the predicted class. Also stores the groundtruth for each cluster.
+
+usage: `python querySubset.py [0-9] [color, size, shape, instance, goggles]` 
+
+Takes the folder number and predicate name as parameter. Outputs a resultPred.p for the predicted class and resultGT.p for the groundtruth in the respective predicate folder.
+
+### computeResultsSubset.py
+Creates the confusion matrix and other metrics for the classification with only one predicate.
+
+usage: `python computeResultsSubset.py [color, size, shape, instance, goggles]`
+
+Creates a folder with the predicate name in the results folder, where the confusion matrix, metrices and some backup files of the groundtruth and prediction lists get stored. 
