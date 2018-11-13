@@ -32,15 +32,15 @@ Uses affinity propagation and the levenshtein distance.
 
 usage: `python clustering.py`
 
-Takes the UnrealGTClass.txt and the RealGTClass.txt as input and outputs the database with clustered strings as UnrealGTClassClustered.txt and RealGTClassClustered.txt.
+Takes the UnrealGTInstance.txt and the RealGTInstance.txt as input and outputs the database with clustered strings as UnrealGTInstanceClustered.txt and RealGTInstanceClustered.txt.
 
 ### setup.py
 
-Creates the test database file from the real database file, by ommiting the groundtruth, as it should be classified on this later. The gt gets stored in a seperate file.
+Creates the train and test database file from the database files. 1/3 of the real data is randomly chosen to be used as train data alongside the unreal data. The rest of the real data is used as test data by ommiting the groundtruth, as it should be classified on this later. The gt gets stored in a seperate file.
 
 usage: `python setup.py`
 
-Takes the RealGTClassClustered.txt as input as Database file. Outputs the folder mlnData were testDB.txt and GTraw.npy gets stored.
+Takes UnrealGTInstanceClustered.txt and RealGTInstanceClustered.txt as input as Database file. Outputs the folder mlnData were [train, test]DB.txt and GTraw.npy gets stored.
 
 ### learn.py
 

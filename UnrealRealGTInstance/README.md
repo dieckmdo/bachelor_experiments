@@ -32,7 +32,7 @@ Uses affinity propagation and the levenshtein distance.
 
 usage: `python clustering.py`
 
-Takes the UnrealGTClass.txt and the RealGTClass.txt as input and outputs the database with clustered strings as UnrealGTClassClustered.txt and RealGTClassClustered.txt.
+Takes the UnrealGTInstance.txt and the RealGTInstance.txt as input and outputs the database with clustered strings as UnrealGTInstanceClustered.txt and RealGTInstanceClustered.txt.
 
 ### setup.py
 
@@ -40,7 +40,7 @@ Creates the test database file from the real database file, by ommiting the grou
 
 usage: `python setup.py`
 
-Takes the RealGTClassClustered.txt as input as Database file. Outputs the folder mlnData were testDB.txt and GTraw.npy gets stored.
+Takes the RealGTInstanceClustered.txt as input as Database file. Outputs the folder mlnData were testDB.txt and GTraw.npy gets stored.
 
 ### learn.py
 
