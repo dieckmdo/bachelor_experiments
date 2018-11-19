@@ -33,7 +33,7 @@ If you want to learn with only a single predicate:
 6. createSubset.py
 7. learnSubset.py
 8. querySubset.py
-9. computeesultsSubset.py
+9. computeResultsSubset.py
 
 What the each script does and how it is called is described below. 
 
