@@ -29,6 +29,7 @@ Also contains the results for the crossvalidations with only one predicate.
 5. computeResults.py
 
 If you want to learn with only a single predicate:
+
 6. createSubset.py
 7. learnSubset.py
 8. querySubset.py
